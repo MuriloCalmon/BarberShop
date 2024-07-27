@@ -31,8 +31,8 @@ export function Login() {
                             <Lock />
                         </Input>
                     </div>
-                    <div onClick={openBarberSelection} className='flex flex-col gap-10'>
-                        <Button variant="primary">
+                    <div  className='flex gap-2'>
+                        <Button onClick={openBarberSelection} variant="primary">
                             Entrar
                         </Button>
 
