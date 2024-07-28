@@ -5,8 +5,8 @@ const buttonVariants = tv({
     base: 'rounded-lg w-full flex items-center justify-center gap-2 font-bold',
     variants: {
         variant: {
-            primary: 'bg-black text-white p-5',
-            secondary: 'outline outline-1 outline-slate-100 text-white p-4'
+            primary: 'bg-zinc-950 text-slate-100 p-4',
+            secondary: 'outline outline-1 outline-slate-100 text-slate-100 p-3'
         },
 
     },

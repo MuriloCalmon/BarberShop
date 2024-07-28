@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 import { tv, VariantProps } from "tailwind-variants"
 
-const InputDivVariant =tv ({
-    base: 'px-4 py-5 flex items-center bg-white',
+const InputDivVariant = tv ({
+    base: 'p-4 flex items-center bg-white',
     variants: {
         variant: {
             form: 'rounded-lg',
@@ -26,10 +26,10 @@ interface InputProps extends VariantProps<typeof InputDivVariant> {
 
 export function Input({placeHolder, variant, children, label, type}: InputProps) {
     return (
-        <div className='flex flex-col gap-2'>
-            <p className='font-medium'>{label}</p>
+        <div className='flex flex-col gap-1'>
+            <p className='font-medium text-sm'>{label}</p>
             <div className={InputDivVariant({variant})} >
-                <input className='flex flex-1 w-full outline-none ' type={type} placeholder={placeHolder} />
+                <input className='flex flex-1 w-full outline-none' type={type} placeholder={placeHolder} />
                 {children}
             </div>
         </div>

@@ -10,21 +10,21 @@ export function Register() {
         navigate('/')
     }
     return (
-        <div className='max-w-screen-sm space-y-8 h-full mt-32'>
+        <div className='space-y-8 h-full mt-16'>
             <div className='flex justify-center min-w-80 m-auto'>
-                <img className='h-72' src="barber.png" alt="barbeiro logo" />
+                <img className='size-48' src="barber.png" alt="barbeiro logo" />
             </div>
             <form action="">
                 <div className='px-7 m-auto space-y-10'>
                     <div className='space-y-4'>
                         <Input type="text" label="Login" placeHolder="Infome seu Login">
-                            <User />
+                            <User className="size-5 text-zinc-900" />
                         </Input>
                         <Input type="password" label="Senha" placeHolder="Informe sua senha">
-                            <Lock />
+                            <Lock className="size-5 text-zinc-900" />
                         </Input>
                         <Input type="password" label="" placeHolder="Repita sua senha">
-                            <Lock />
+                            <Lock className="size-5 text-zinc-900" />
                         </Input>
 
                     </div>
