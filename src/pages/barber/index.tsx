@@ -1,17 +1,13 @@
-import { Menu, Search, Star, X } from "lucide-react";
-import { useState } from "react";
+import { Search, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Input } from "../../components/Input";
 
 
 
 export function Barber() {
 
     const navigate = useNavigate()
-    const [menuButtonIsOpen, setMenuButtonIsOpen] = useState(false)
 
-    function openMenu() {
-        !menuButtonIsOpen ? setMenuButtonIsOpen(true) : setMenuButtonIsOpen(false)
-    }
 
 
     function openschedule() {
@@ -25,42 +21,21 @@ export function Barber() {
 
 
                 <nav className="mt-6">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <a className="hiden" href="">
-                                
-                            </a>
-                        </div>
-                        <div>
-                            {menuButtonIsOpen ? (
-                                <button onClick={openMenu} className="">
-                                    <X className="size-7" />
-                                </button>
-                            ) : (
-                                <button onClick={openMenu} className="">
-                                    <Menu className="size-7" />
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                    {menuButtonIsOpen && (
-                        <ul id="menu" className="flex flex-col gap-4 py-10 px-8 rounded bg-zinc-950 opacity-80 text-slate-100 absolute right-0 ">
+                    <div className="flex justify-between text-lg">
+                        <span>Barber<strong>Shop</strong></span>
+                        <ul>
                             <li>
-                                <a href="">Home</a>
-                            </li>
-                            <li>
-                                <a href="">Sobre</a>
-                            </li>
-                            <li>
-                                <a href="">Contato</a>
+                                <a href="">Sair</a>
                             </li>
                         </ul>
-                    )}
+                    </div>
                 </nav>
 
-                <div className="flex items-center justify-between px-4 py-2 rounded-lg bg-zinc-900">
-                    <span className="text-xs text-slate-100">Barbeiros disponíveis</span>
-                    <Search className="text-slate-100" />
+                <div className="flex gap-2 items-center px-4 py-3 rounded-lg bg-zinc-900">
+                    <p className="text-xs text-slate-100 shrink-0">Barbeiros Disponíveis</p>
+                    <Input variant="search" label="" placeHolder="" type="text">
+                        <Search  />
+                    </Input>
                 </div>
             </div>
 

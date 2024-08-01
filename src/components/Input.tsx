@@ -6,7 +6,7 @@ const InputDivVariant = tv ({
     variants: {
         variant: {
             form: 'rounded-lg',
-            search: 'rounded-3xl px-6 py-3'
+            search: 'rounded-3xl p-1'
         },
         
     },
