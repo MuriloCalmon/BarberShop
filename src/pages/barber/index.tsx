@@ -1,76 +1,62 @@
-import { Search, Star } from "lucide-react";
+import { Menu, Search, Star, X } from "lucide-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { stack as Menu } from "react-burger-menu";
 
-const styles = {
-    bmBurgerButton: {
-        position: 'fixed',
-        width: '36px',
-        height: '30px',
-        right: '36px',
-        top: '36px',
-    },
-    bmBurgerBars: {
-        background: '#09090b'
-    },
-    bmBurgerBarsHover: {
-        background: '#a90000'
-    },
-    bmCrossButton: {
-        height: '24px',
-        width: '24px'
-    },
-    bmCross: {
-        background: '#fff'
-    },
-    bmMenuWrap: {
-        position: 'fixed',
-        height: '100%'
-    },
-    bmMenu: {
-        background: '#09090b',
-        padding: '2.5em 1.5em 0',
-        fontSize: '16px',
-    },
-    bmMorphShape: {
-        fill: '#373a47'
-    },
-    bmItemList: {
-        color: '#b8b7ad',
-        padding: '0.8em'
-    },
-    bmItem: {
-        display: 'block',
-        color: '#fff',
-        marginBottom: '0.8em',
-        
-    },
-    bmOverlay: {
-        background: 'rgba(0, 0, 0, 0.3)'
-    }
-}
+
 
 export function Barber() {
 
-
-
     const navigate = useNavigate()
+    const [menuButtonIsOpen, setMenuButtonIsOpen] = useState(false)
+
+    function openMenu() {
+        !menuButtonIsOpen ? setMenuButtonIsOpen(true) : setMenuButtonIsOpen(false)
+    }
 
 
     function openschedule() {
         navigate('/schedule')
     }
 
-
     return (
 
         <div className="px-7">
-            <div className="space-y-24">
+            <div className="space-y-16 relative">
 
-                <Menu right styles={styles} >
-                    <a id="out" className="menu-item" href="/">Sair</a>
-                </Menu>
 
+                <nav className="mt-6">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <a className="hiden" href="">
+                                
+                            </a>
+                        </div>
+                        <div>
+                            {menuButtonIsOpen ? (
+                                <button onClick={openMenu} className="">
+                                    <X />
+                                </button>
+                            ) : (
+                                <button onClick={openMenu} className="">
+                                    <Menu />
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                    {menuButtonIsOpen && (
+                        <ul id="menu" className="flex flex-col items-start justify-between p-5 rounded-lg bg-zinc-950 opacity-80 text-slate-100 absolute w-full h-full left-1/2 transition-opacity">
+                            <li>
+                                <a href="">Home</a>
+                            </li>
+                            <li>
+                                <a href="">Sobre</a>
+                            </li>
+                            <li>
+                                <a href="">Contato</a>
+                            </li>
+                        </ul>
+                    )}
+                </nav>
 
                 <div className="flex items-center justify-between px-4 py-2 rounded-lg bg-zinc-900">
                     <span className="text-xs text-slate-100">Barbeiros disponíveis</span>
