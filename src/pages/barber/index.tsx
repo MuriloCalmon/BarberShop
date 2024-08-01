@@ -44,7 +44,7 @@ export function Barber() {
                         </div>
                     </div>
                     {menuButtonIsOpen && (
-                        <ul id="menu" className="flex flex-col gap-4 py-10 px-8 rounded-lg bg-zinc-950 opacity-80 text-slate-100 absolute -right-1.5 ">
+                        <ul id="menu" className="flex flex-col gap-4 py-10 px-8 rounded bg-zinc-950 opacity-80 text-slate-100 absolute right-0 ">
                             <li>
                                 <a href="">Home</a>
                             </li>
