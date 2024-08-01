@@ -21,7 +21,7 @@ export function Barber() {
     return (
 
         <div className="px-7">
-            <div className="space-y-16 relative">
+            <div className="space-y-16 ">
 
 
                 <nav className="mt-6">
@@ -34,17 +34,17 @@ export function Barber() {
                         <div>
                             {menuButtonIsOpen ? (
                                 <button onClick={openMenu} className="">
-                                    <X />
+                                    <X className="size-7" />
                                 </button>
                             ) : (
                                 <button onClick={openMenu} className="">
-                                    <Menu />
+                                    <Menu className="size-7" />
                                 </button>
                             )}
                         </div>
                     </div>
                     {menuButtonIsOpen && (
-                        <ul id="menu" className="flex flex-col items-start justify-between p-5 rounded-lg bg-zinc-950 opacity-80 text-slate-100 absolute w-full h-full left-1/2 transition-opacity">
+                        <ul id="menu" className="flex flex-col gap-4 py-10 px-8 rounded-lg bg-zinc-950 opacity-80 text-slate-100 absolute -right-1.5 ">
                             <li>
                                 <a href="">Home</a>
                             </li>
