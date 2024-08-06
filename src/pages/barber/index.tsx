@@ -44,7 +44,7 @@ export function Barber() {
                 <div className="">
                     <img className="size-16 rounded-full outline p-1" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&i" alt="" />
                 </div>
-                <div className="text-sm flex flex-col items-center gap-1">
+                <div className=" flex flex-col items-center gap-1">
                     <h3 className="">Murilo Calmon</h3>
                     <div className="flex gap-1">
                         <Star className="size-5 text-amber-500" />
@@ -53,14 +53,14 @@ export function Barber() {
                         <Star className="size-5 text-amber-500" />
                         <Star className="size-5 text-zinc-950" />
                     </div>
-                    <span className="text-xs">Ótimo</span>
+                    <span className="text-sm">Ótimo</span>
                 </div>
             </div>
             <div onClick={openschedule} className="mt-10 flex justify-evenly bg-white py-3 rounded-3xl">
                 <div className="">
                     <img className="size-16 rounded-full outline p-1" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyZmlsfGVufDB8fDB8fHww" alt="" />
                 </div>
-                <div className="text-sm flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1">
                     <h3 className="">Aria Stark</h3>
                     <div className="flex gap-1">
                         <Star className="size-5 text-amber-500" />
@@ -69,14 +69,14 @@ export function Barber() {
                         <Star className="size-5 text-zinc-950" />
                         <Star className="size-5 text-zinc-950" />
                     </div>
-                    <span className="text-xs">Bom</span>
+                    <span className="text-sm">Bom</span>
                 </div>
             </div>
             <div onClick={openschedule} className="mt-10 flex justify-evenly bg-white py-3 rounded-3xl">
                 <div className="">
                     <img className="size-16 rounded-full outline p-1" src="https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGVyZmlsfGVufDB8fDB8fHww" alt="" />
                 </div>
-                <div className="text-sm flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1">
                     <h3 className="">João</h3>
                     <div className="flex gap-1">
                         <Star className="size-5 text-amber-500" />
@@ -85,7 +85,7 @@ export function Barber() {
                         <Star className="size-5 text-amber-500" />
                         <Star className="size-5 text-amber-500" />
                     </div>
-                    <span className="text-xs">Excelente</span>
+                    <span className="text-sm">Excelente</span>
                 </div>
             </div>
 
