@@ -31,10 +31,10 @@ export function Barber() {
                     </div>
                 </nav>
 
-                <div className="flex gap-2 items-center px-4 py-3 rounded-lg bg-zinc-900">
-                    <p className="text-xs text-slate-100 shrink-0">Barbeiros Disponíveis</p>
+                <div className="flex flex-col gap-2 items-center px-4 py-3 rounded-lg bg-zinc-900">
+                    <p className="text-slate-100 shrink-0">Barbeiros Disponíveis</p>
                     <Input variant="search" label="" placeHolder="" type="text">
-                        <Search  />
+                        <Search />
                     </Input>
                 </div>
             </div>
