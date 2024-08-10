@@ -1,4 +1,4 @@
-import { Heart, Star } from "lucide-react";
+import { Heart} from "lucide-react";
 import { useState } from "react";
 import { ConfirmScheduleModal } from "./confirmScheduleModal";
 import { PerfilBarber } from "../../components/perfilBarber";
@@ -43,11 +43,12 @@ export function Schedule() {
                 <div className="flex items-center">
                     <h3 className="flex-1 text-slate-100 font-semibold">João Maria</h3>
                     <div className="flex items-center gap-1 drop-shadow-lg">
-                        <Star className="size-4 text-slate-100" />
-                        <Star className="size-4 text-slate-100" />
-                        <Star className="size-4 text-slate-100" />
-                        <Star className="size-4 text-slate-100" />
-                        <Star className="size-4 text-slate-100" />
+                    <Stars
+                        one="text-slate-100 size-4"
+                        two="text-slate-100 size-4"
+                        three="text-slate-100 size-4"
+                        four="text-slate-100 size-4"
+                        five="text-slate-100 size-4" />
                     </div>
                 </div>
                 <p className="text-xs text-slate-100">Lorem ipsum dolor, sit amet consectetur adipisicing elit.

@@ -27,7 +27,7 @@ export function Barber() {
                         <span>Barber<strong>Shop</strong></span>
                         <ul>
                             <li>
-                                <a href="">Sair</a>
+                                <a href="/">Sair</a>
                             </li>
                         </ul>
                     </div>
