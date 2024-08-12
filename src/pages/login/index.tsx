@@ -1,7 +1,8 @@
-import { User, Lock } from "lucide-react";
+import { User, Lock, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
+import { useToggle } from '../../hook/useToogle'
 
 export function Login() {
 
@@ -15,6 +16,8 @@ export function Login() {
         navigate('/barber')
     }
 
+    const [isToggled, toggle] = useToggle(false);
+
     return (
         <div className=' space-y-8 h-full mt-16'>
             <div className='flex justify-center min-w-80 m-auto'>
@@ -24,11 +27,12 @@ export function Login() {
                 <div className='px-7 m-auto space-y-10'>
                     <div className='space-y-4'>
                         <Input type="text" label="Login" placeHolder="Infome seu login">
-                            <User className="size-5 text-zinc-900" />
+                            <User className="size-5 mr-2 text-zinc-900" />
                         </Input>
 
-                        <Input type="password" label="Senha" placeHolder="Informe sua senha">
-                            <Lock className="size-5 text-zinc-900" />
+                        <Input type={isToggled ? 'text' : 'password'} label="Senha" placeHolder="Informe sua senha">
+                            {isToggled ? <EyeOff className="size-5" onClick={toggle} /> : <Eye className="size-5" onClick={toggle} />}
+                            <Lock className="size-5 ml-2 text-zinc-900" />
                         </Input>
                     </div>
                     <div  className='flex flex-col gap-2'>
