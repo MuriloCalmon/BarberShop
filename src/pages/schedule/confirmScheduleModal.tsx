@@ -2,7 +2,7 @@ import { Button } from "../../components/Button"
 import { TimeGrid } from "../../components/timeGrid";
 import { DateGrid } from "../../components/dateGrid";
 
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, Zoom, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 interface ConfirmScheduleModalProps {
@@ -11,16 +11,16 @@ interface ConfirmScheduleModalProps {
 
 export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModalProps) {
     
-    const notify = () => toast.success('Agendamento concluido!', {
+    const notify = () => toast.success('Agendamento concluido com sucesso!', {
         position: "top-center",
-        autoClose: 1000,
+        autoClose: 2500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
         theme: "light",
-        transition: Bounce,
+        transition: Zoom,
         });
 
     return (
@@ -51,7 +51,7 @@ export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModa
                     </Button>
                     <ToastContainer
                         position="top-center"
-                        autoClose={1000}
+                        autoClose={2500}
                         hideProgressBar
                         newestOnTop={false}
                         closeOnClick
@@ -60,7 +60,7 @@ export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModa
                         draggable
                         pauseOnHover
                         theme="light"
-                        transition={Bounce}
+                        transition={Zoom}
                         />
                     <Button onClick={closeModalSchedule} variant="secondary">
                         Cancelar
