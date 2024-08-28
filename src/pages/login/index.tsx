@@ -27,7 +27,7 @@ export function Login() {
                 <div className='px-7 m-auto space-y-10'>
                     <div className='space-y-4'>
                         <Input type="text" label="Login" placeHolder="Infome seu login">
-                            <User className="size-5 mr-2 text-zinc-900" />
+                            <User className="size-5 text-zinc-900" />
                         </Input>
 
                         <Input type={isToggled ? 'text' : 'password'} label="Senha" placeHolder="Informe sua senha">

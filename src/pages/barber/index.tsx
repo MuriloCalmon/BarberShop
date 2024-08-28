@@ -20,8 +20,6 @@ export function Barber() {
 
         <div className="px-7">
             <div className="space-y-10 ">
-
-
                 <nav className="mt-10">
                     <div className="flex justify-between text-lg">
                         <ul>
@@ -29,6 +27,7 @@ export function Barber() {
                                 <a href="/"><ArrowLeftToLine className="size-7" /></a>
                             </li>
                         </ul>
+                        <p>Nome do perfil</p>
                     </div>
                 </nav>
 
@@ -48,6 +47,7 @@ export function Barber() {
                     three="text-amber-500"
                     four="text-amber-500"
                     five="text-amber-500" />
+                    
             </PerfilBarber>
 
             <PerfilBarber openSchedule={openSchedule} nome="Aria Stark" srcImg="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyZmlsfGVufDB8fDB8fHww">

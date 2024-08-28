@@ -1,12 +1,27 @@
 import { Button } from "../../components/Button"
-import {TimeGrid} from "../../components/timeGrid";
+import { TimeGrid } from "../../components/timeGrid";
 import { DateGrid } from "../../components/dateGrid";
 
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 interface ConfirmScheduleModalProps {
     closeModalSchedule: () => void
 }
 
 export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModalProps) {
+    
+    const notify = () => toast.success('Agendamento concluido!', {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
 
     return (
         <div className="fixed z-20 inset-0 bg-black/60 flex items-center justify-center">
@@ -20,20 +35,33 @@ export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModa
                     <p>R$: 18,00</p>
                 </div>
                 <div className="flex flex-col gap-1 bg-slate-100 rounded-lg items-center justify-between p-4">
-                <p className="font-bold">Escolha a data</p>
-                        <DateGrid />
+                    <p className="font-bold">Escolha a data</p>
+                    <DateGrid />
                 </div>
                 <div className="flex flex-col gap-1 bg-slate-100 rounded-lg items-center justify-between p-4">
                     <div className="flex flex-col items-center gap-3">
                         <p className="font-bold">Escolha o horário</p>
                         <TimeGrid />
-                        
+
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                    <Button >
+                    <Button onClick={notify} >
                         Finalizar o agendamento
                     </Button>
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={1000}
+                        hideProgressBar
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        transition={Bounce}
+                        />
                     <Button onClick={closeModalSchedule} variant="secondary">
                         Cancelar
                     </Button>
