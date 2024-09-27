@@ -26,16 +26,12 @@ export function Login() {
     const navigate = useNavigate()
 
     function handleSubmitLogin(data: LoginSchema) {
-        openBarberSelection()
+        navigate('/barber', {state: {formData: data} })
         console.log(data)
     }
 
     function openRegistrationScreen() {
         navigate('/register')
-    }
-
-    function openBarberSelection() {
-        navigate('/barber')
     }
 
     const [isToggled, toggle] = useToggle(false);   

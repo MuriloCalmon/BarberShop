@@ -1,72 +1,29 @@
-import { Button } from "../../components/Button"
-import { TimeGrid } from "../../components/timeGrid";
-import { DateGrid } from "../../components/dateGrid";
+import { Button } from "../../components/Button";
 
-import {ToastContainer, Zoom, toast } from 'react-toastify';
-
-import 'react-toastify/dist/ReactToastify.css';
-interface ConfirmScheduleModalProps {
-    closeModalSchedule: () => void
+interface ConfirmationModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    onConfirm: () => void;
+    // appointmentDate: string; // Data do agendamento
 }
 
-export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModalProps) {
-    
-    const notify = () => toast.success('Agendamento concluído com sucesso!', {
-        position: "top-center",
-        autoClose: 2500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Zoom,
-        });
+export function ConfirmationModal({ isOpen, onClose, onConfirm }: ConfirmationModalProps) {
+    if (!isOpen) return null;
 
     return (
-        <div className="fixed z-20 inset-0 bg-black/60 flex items-center justify-center">
-            <div className="bg-amber-500 shadow-shape w-80  rounded-lg px-4 py-6 space-y-6">
-                <div className="flex bg-slate-100 rounded-lg items-center justify-between px-4 py-3">
-                    <img className="size-16 rounded-full drop-shadow-lg" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&i" alt="" />
-                    <p>Murilo Calmon</p>
-                </div>
-                <div className="flex bg-slate-100 rounded-lg items-center justify-between p-4">
-                    <p>Murilo Calmon</p>
-                    <p>R$: 18,00</p>
-                </div>
-                <div className="flex flex-col gap-1 bg-slate-100 rounded-lg items-center justify-between p-4">
-                    <p className="font-bold">Escolha a data</p>
-                    <DateGrid />
-                </div>
-                <div className="flex flex-col gap-1 bg-slate-100 rounded-lg items-center justify-between p-4">
-                    <div className="flex flex-col items-center gap-3">
-                        <p className="font-bold">Escolha o horário</p>
-                        <TimeGrid />
-
-                    </div>
-                </div>
-                <div className="flex flex-col gap-4">
-                    <Button onClick={notify} >
-                        Finalizar o agendamento
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 bg-opacity-50">
+            <div className="bg-slate-100 rounded-lg p-6 shadow-shape w-72">
+                <h2 className="font-semibold mb-4">Confirmação de Agendamento</h2>
+                <p className="mb-6 text-sm">Deseja confirmar?</p>
+                <div className="flex justify-between gap-2">
+                    <Button onClick={onConfirm} variant="schedule">
+                        Confirmar
                     </Button>
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={2500}
-                        hideProgressBar
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                        transition={Zoom}
-                        />
-                    <Button onClick={closeModalSchedule} variant="secondary">
+                    <Button onClick={onClose}>
                         Cancelar
                     </Button>
                 </div>
             </div>
         </div>
-    )
+    );
 }
