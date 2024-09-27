@@ -26,7 +26,7 @@ export function Login() {
     const navigate = useNavigate()
 
     function handleSubmitLogin(data: LoginSchema) {
-        navigate('/barber', {state: {formData: data} })
+        navigate('/barber', {state: {formLoginData: data} })
         console.log(data)
     }
 

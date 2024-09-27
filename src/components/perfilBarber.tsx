@@ -13,7 +13,7 @@ export function PerfilBarber({ children, nome, openSchedule, srcImg }: Perfilbar
     return (
         <div onClick={openSchedule} className="mt-10 flex justify-evenly bg-white py-5 rounded-3xl">
             <div className="">
-                <img className="size-16 rounded-full outline p-1" src={srcImg} alt="" />
+                <img className="size-16 rounded-full" src={srcImg} alt="" />
             </div>
             <div className="flex flex-col items-center gap-1">
                 <h3 className="">{nome}</h3>

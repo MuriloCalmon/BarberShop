@@ -4,10 +4,13 @@ import { ScheduleModal } from "./scheduleModal";
 import { Stars } from "../../components/stars";
 import { Services } from "./services";
 import { Button } from "../../components/Button";
+import { useLocation } from "react-router-dom";
 
 export function Schedule() {
 
     const [isOpenConfirmSchedule, setIsOpenConfirmSchedule] = useState(false)
+    const location = useLocation()
+    const { barber } = location.state
 
 
     function openModalSchedule() {
@@ -17,6 +20,29 @@ export function Schedule() {
         setIsOpenConfirmSchedule(false)
     }
 
+    const servicesMan = [
+        {
+            title: 'Corte masculino',
+            price: 'R$: 18,00'
+        },
+        {
+            title: 'Barba',
+            price: 'R$: 8,00'
+        }, 
+        {
+            title: 'Bigode',
+            price: 'R$: 5,00'
+        }, 
+        {
+            title: 'Barba e bigode',
+            price: 'R$: 13,00'
+        }, 
+        {
+            title: 'Completo',
+            price: 'R$: 25,00'
+        }, 
+    ]
+
 
     return (
         <div className="bg-slate-100 h-screen max-h-screen mt-28 rounded-tl-3xl">
@@ -24,24 +50,24 @@ export function Schedule() {
                 <ScheduleModal closeModalSchedule={closeModalSchedule} />
             )}
             <div className="flex gap-5 items-center absolute top-16 left-1/2 -ml-36">
-                <img className="size-24 rounded-full drop-shadow-lg" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&i" alt="" />
+                <img className="size-24 rounded-full drop-shadow-lg" src={barber.srcImg} alt="" />
                 <div>
-                    <h3 className="mt-12">Murilo Calmon</h3>
+                    <h3 className="mt-12">{barber.nome}</h3>
                     <Stars
-                        one="text-amber-500"
-                        two="text-amber-500"
-                        three="text-amber-500"
-                        four="text-amber-500"
-                        five="text-amber-500" />
+                        one={barber.stars[0] ? 'text-amber-500' : 'text-zinc-950'}
+                        two={barber.stars[1] ? 'text-amber-500' : 'text-zinc-950'}
+                        three={barber.stars[2] ? 'text-amber-500' : 'text-zinc-950'}
+                        four={barber.stars[4] ? 'text-amber-500' : 'text-zinc-950'}
+                        five={barber.stars[5] ? 'text-amber-500' : 'text-zinc-950'}
+                    />
                 </div>
                 <Heart className="bg-slate-100 rounded-lg size-7 drop-shadow-lg" />
             </div>
             <div className="space-y-10 py-20">
                 <h2 className="text-amber-500 text-center font-bold">Lista de serviços</h2>
-                <Services onClick={openModalSchedule} title="Corte masculino" value="R$: 18,00" />
-                <Services onClick={openModalSchedule} title="Corte masculino" value="R$: 18,00" />
-                <Services onClick={openModalSchedule} title="Corte masculino" value="R$: 18,00" />
-                <Services onClick={openModalSchedule} title="Corte masculino" value="R$: 18,00" />
+                {servicesMan.map(({ title, price }) => (
+                    <Services onClick={openModalSchedule} title={title} value={price} />
+                ))}
             </div>
 
             <div className="px-16">
@@ -49,22 +75,6 @@ export function Schedule() {
                     Voltar
                 </Button>
             </div>
-            {/* <div className="flex flex-col gap-4 py-4 px-5 w-80 m-auto bg-amber-600 rounded-lg">
-                <div className="flex items-center">
-                    <h3 className="flex-1 text-slate-100 font-semibold">João Maria</h3>
-                    <div className="flex items-center gap-1 drop-shadow-lg">
-                        <Stars
-                            one="text-slate-100 size-4"
-                            two="text-slate-100 size-4"
-                            three="text-slate-100 size-4"
-                            four="text-slate-100 size-4"
-                            five="text-slate-100 size-4" />
-                    </div>
-                </div>
-                <p className="text-xs text-slate-100">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                    Sapiente amet cupiditate iusto magni id eos laborum
-                </p>
-            </div> */}
         </div>
     )
 }
