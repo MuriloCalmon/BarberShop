@@ -4,13 +4,11 @@ import { ScheduleModal } from "./scheduleModal";
 import { Stars } from "../../components/stars";
 import { Services } from "./services";
 import { Button } from "../../components/Button";
-import { useNavigate } from "react-router-dom";
 
 export function Schedule() {
 
     const [isOpenConfirmSchedule, setIsOpenConfirmSchedule] = useState(false)
 
-    const navigate = useNavigate()
 
     function openModalSchedule() {
         setIsOpenConfirmSchedule(true)
@@ -19,9 +17,6 @@ export function Schedule() {
         setIsOpenConfirmSchedule(false)
     }
 
-    function handleReturnBarber() {
-        navigate('/barber')
-    }
 
     return (
         <div className="bg-slate-100 h-screen max-h-screen mt-28 rounded-tl-3xl">
