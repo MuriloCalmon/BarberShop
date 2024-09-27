@@ -10,10 +10,12 @@ export function Barber() {
 
     const navigate = useNavigate()
 
-
-
     function openSchedule() {
         navigate('/schedule')
+    }
+
+    function exitForLogin() {
+        navigate('/')
     }
 
     return (
@@ -24,7 +26,7 @@ export function Barber() {
                     <div className="flex justify-between text-lg">
                         <ul>
                             <li>
-                                <a href="/"><ArrowLeftToLine className="size-7" /></a>
+                                <a onClick={exitForLogin}><ArrowLeftToLine className="size-7" /></a>
                             </li>
                         </ul>
                         <p>Nome do perfil</p>
