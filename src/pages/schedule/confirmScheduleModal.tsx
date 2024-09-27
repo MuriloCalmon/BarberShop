@@ -11,7 +11,7 @@ interface ConfirmScheduleModalProps {
 
 export function ConfirmScheduleModal({ closeModalSchedule }: ConfirmScheduleModalProps) {
     
-    const notify = () => toast.success('Agendamento concluido com sucesso!', {
+    const notify = () => toast.success('Agendamento concluído com sucesso!', {
         position: "top-center",
         autoClose: 2500,
         hideProgressBar: true,
