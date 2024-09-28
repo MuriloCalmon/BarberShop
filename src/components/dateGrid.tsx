@@ -13,7 +13,7 @@ export function DateGrid() {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="grid grid-cols-4 gap-3  text-zinc-500">
       {dates.map((date, index) => (
         <span
           key={index}

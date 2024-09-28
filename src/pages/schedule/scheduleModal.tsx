@@ -5,14 +5,20 @@ import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import { ConfirmationModal } from "./confirmScheduleModal";
+
+
 interface ScheduleModalProps {
     closeModalSchedule: () => void
+    nome: string
+    srcImg: string
+    service: string | undefined
+    price: string | undefined
 }
 
 
 
 
-export function ScheduleModal({ closeModalSchedule }: ScheduleModalProps) {
+export function ScheduleModal({ closeModalSchedule, nome, service, price, srcImg }: ScheduleModalProps) {
 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,12 +41,12 @@ export function ScheduleModal({ closeModalSchedule }: ScheduleModalProps) {
         <div className="fixed z-20 inset-0 bg-black/60 flex items-center justify-center">
             <div className="bg-amber-500 shadow-shape w-80  rounded-lg px-4 py-6 space-y-6">
                 <div className="flex bg-slate-100 rounded-lg items-center justify-between px-4 py-3">
-                    <img className="size-16 rounded-full drop-shadow-lg" src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&i" alt="" />
-                    <p>Murilo Calmon</p>
+                    <img className="size-16 rounded-full drop-shadow-lg" src={srcImg} alt="" />
+                    <p className="font-semibold text-base">{nome}</p>
                 </div>
                 <div className="flex bg-slate-100 rounded-lg items-center justify-between p-4">
-                    <p>Murilo Calmon</p>
-                    <p>R$: 18,00</p>
+                    <p className="font-semibold">{service}</p>
+                    <p className="font-semibold">{price}</p>
                 </div>
                 <div className="flex flex-col gap-1 bg-slate-100 rounded-lg items-center justify-between p-4">
                     <p className="font-bold">Escolha a data</p>

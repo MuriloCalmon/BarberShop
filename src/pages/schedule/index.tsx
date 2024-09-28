@@ -1,20 +1,29 @@
-import { Heart } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import { useState } from "react";
 import { ScheduleModal } from "./scheduleModal";
 import { Stars } from "../../components/stars";
 import { Services } from "./services";
-import { Button } from "../../components/Button";
 import { useLocation } from "react-router-dom";
+
+
+interface Barber {
+    service: string
+    price: string
+}
+
+
 
 export function Schedule() {
 
     const [isOpenConfirmSchedule, setIsOpenConfirmSchedule] = useState(false)
+    const [selectedBarber, setSelectedBarber] = useState<Barber | null>(null);
     const location = useLocation()
     const { barber } = location.state
 
 
-    function openModalSchedule() {
+    function openModalSchedule(index: number) {
         setIsOpenConfirmSchedule(true)
+        setSelectedBarber(servicesMan[index])
     }
     function closeModalSchedule() {
         setIsOpenConfirmSchedule(false)
@@ -22,35 +31,41 @@ export function Schedule() {
 
     const servicesMan = [
         {
-            title: 'Corte masculino',
+            service: 'Corte masculino',
             price: 'R$: 18,00'
         },
         {
-            title: 'Barba',
+            service: 'Barba',
             price: 'R$: 8,00'
         }, 
         {
-            title: 'Bigode',
+            service: 'Bigode',
             price: 'R$: 5,00'
         }, 
         {
-            title: 'Barba e bigode',
+            service: 'Barba e bigode',
             price: 'R$: 13,00'
         }, 
         {
-            title: 'Completo',
+            service: 'Completo',
             price: 'R$: 25,00'
         }, 
     ]
 
 
     return (
-        <div className="bg-slate-100 h-screen max-h-screen mt-28 rounded-tl-3xl">
+        <div className="mt-28 bg-slate-100 min-h-screen rounded-tl-3xl">
+            {/* <div className="bg-slate-200 h-screen w-screen absolute top-0 left-0 -z-50 "></div> */}
             {isOpenConfirmSchedule && (
-                <ScheduleModal closeModalSchedule={closeModalSchedule} />
+                <ScheduleModal nome={barber.nome} service={selectedBarber?.service} price={selectedBarber?.price} srcImg={barber.srcImg} closeModalSchedule={closeModalSchedule} />
             )}
-            <div className="flex gap-5 items-center absolute top-16 left-1/2 -ml-36">
-                <img className="size-24 rounded-full drop-shadow-lg" src={barber.srcImg} alt="" />
+            
+            <div onClick={() => window.history.back()} className="absolute top-6 left-1/2 -ml-36 cursor-pointer">
+                <ArrowLeft />
+            </div>
+            
+            <div className="drop-shadow-2xl flex gap-5 items-center absolute top-16 left-1/2 -ml-36">
+                <img className="size-24 rounded-full" src={barber.srcImg} alt="" />
                 <div>
                     <h3 className="mt-12">{barber.nome}</h3>
                     <Stars
@@ -63,18 +78,14 @@ export function Schedule() {
                 </div>
                 <Heart className="bg-slate-100 rounded-lg size-7 drop-shadow-lg" />
             </div>
-            <div className="space-y-10 py-20">
+            <div className="space-y-10 pt-20">
                 <h2 className="text-amber-500 text-center font-bold">Lista de serviços</h2>
-                {servicesMan.map(({ title, price }) => (
-                    <Services onClick={openModalSchedule} title={title} value={price} />
+                {servicesMan.map(({ service, price }, index) => (<div>
+                    <Services onClick={() => openModalSchedule(index)} service={service} value={price} />
+                </div>
                 ))}
             </div>
-
-            <div className="px-16">
-                <Button onClick={() => window.history.back()}>
-                    Voltar
-                </Button>
-            </div>
+            
         </div>
     )
 }

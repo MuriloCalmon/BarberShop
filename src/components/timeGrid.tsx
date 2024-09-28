@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 export function TimeGrid() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
@@ -14,7 +13,7 @@ export function TimeGrid() {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="grid grid-cols-4 gap-3 text-zinc-500">
       {times.map((time, index) => (
         <span
           key={index}
