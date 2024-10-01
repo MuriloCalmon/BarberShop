@@ -44,9 +44,9 @@ export function Barber() {
         },
     ];
 
-    
+
     function openSchedule(barber: BarberProps) {
-        navigate('/schedule', {state: {barber}})
+        navigate('/schedule', { state: { barber } })
     }
 
 
@@ -57,16 +57,19 @@ export function Barber() {
 
     return (
 
-        <div className="px-7">
-            <div className="space-y-10 ">
+        <div className="px-7 pb-4">
+            <div className="space-y-10">
                 <nav className="mt-10">
-                    <div className="flex justify-between text-lg">
+                    <div className="flex justify-between items-center text-lg">
                         <ul>
                             <li>
                                 <a onClick={exitForLogin}><ArrowLeftToLine className="size-7" /></a>
                             </li>
                         </ul>
-                        <p className=""><span className="text-xs">Bem vindo(a)</span> {formLoginData.login}</p>
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-xs">Bem vindo(a): </span>
+                            <p className="">{formLoginData.login}</p>
+                        </div>
                     </div>
                 </nav>
 
@@ -78,28 +81,28 @@ export function Barber() {
                             type="text"
                             value={searchBarber}
                             onChange={(e) => setSearchBarber(e.target.value)}
-                          />
+                        />
                         <Search />
                     </div>
                 </div>
             </div>
 
             {/* Filtra os barbeiros e  */}
-            {filteredBarbers.map((barber, index)=> (
+            {filteredBarbers.map((barber, index) => (
                 <PerfilBarber
                     key={index}
                     openSchedule={() => openSchedule(barber)}
                     nome={barber.nome}
                     srcImg={barber.srcImg}
                 >
-                
-                <Stars
-                    one={barber.stars[0] ? 'text-amber-500': 'text-zinc-950'}
-                    two={barber.stars[1] ? 'text-amber-500': 'text-zinc-950'}
-                    three={barber.stars[2] ? 'text-amber-500': 'text-zinc-950'}
-                    four={barber.stars[4] ? 'text-amber-500': 'text-zinc-950'}
-                    five={barber.stars[5] ? 'text-amber-500': 'text-zinc-950'}
-                />
+
+                    <Stars
+                        one={barber.stars[0] ? 'text-amber-500' : 'text-zinc-950'}
+                        two={barber.stars[1] ? 'text-amber-500' : 'text-zinc-950'}
+                        three={barber.stars[2] ? 'text-amber-500' : 'text-zinc-950'}
+                        four={barber.stars[4] ? 'text-amber-500' : 'text-zinc-950'}
+                        five={barber.stars[5] ? 'text-amber-500' : 'text-zinc-950'}
+                    />
 
                 </PerfilBarber>
             ))}

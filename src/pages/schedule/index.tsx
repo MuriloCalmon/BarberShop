@@ -60,7 +60,7 @@ export function Schedule() {
                 <ScheduleModal nome={barber.nome} service={selectedBarber?.service} price={selectedBarber?.price} srcImg={barber.srcImg} closeModalSchedule={closeModalSchedule} />
             )}
             
-            <div onClick={() => window.history.back()} className="absolute top-6 left-1/2 -ml-36 cursor-pointer">
+            <div onClick={() => window.history.back()} className="absolute top-6 left-1/2 -ml-36 p-2 cursor-pointer">
                 <ArrowLeft />
             </div>
             
