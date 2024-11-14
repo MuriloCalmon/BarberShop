@@ -11,7 +11,7 @@ interface StarsProps {
 
 export function Stars({five, four, one, three, two}: StarsProps) {
     return (
-        <div className="flex gap-2">
+        <div className="flex gap-2 drop-shadow-lg">
             <Star className={one}/>
             <Star className={two} />
             <Star className={three} />

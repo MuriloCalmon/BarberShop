@@ -7,14 +7,18 @@ interface ServicesProps extends ComponentProps<'button'> {
 }
 
 
-export function Services({service, value, ...props}:ServicesProps) {
+export function Services({ service, value, ...props }: ServicesProps) {
     return (
         <div className="flex px-7">
-            <div className="flex-1">
-                <h4 className="font-bold text-amber-600">{service}</h4>
-                <span className="">{value}</span>
+            <div className="flex flex-1 items-start">
+                <div className="">
+                    <h4 className="font-bold text-amber-600">{service}</h4>
+                    <span className="">{value}</span>
+                </div>
             </div>
-            <Button {...props} variant="schedule">Agendar</Button>
+            <div>
+                <Button {...props} variant="schedule">Agendar</Button>
+            </div>
         </div>
     )
 }

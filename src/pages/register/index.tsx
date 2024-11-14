@@ -5,6 +5,9 @@ import { useToggle } from "../../hook/useToogle";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 export function Register() {
 
     const navigate = useNavigate()
@@ -15,15 +18,22 @@ export function Register() {
 
     const [isToggled, toggle] = useToggle(false);
 
+    const [userDataRegister, setUserDataRegister] = useState({
+        login: '',
+        password: '',
+        confirmPassword: ''
+    })
+
     const registerSchema = z.object({
         login: z.string()
-            .min(4, 'Login precisa ter no mínimo 4 caracteres'),
+            .min(4, 'Login precisa ter no mínimo 4 caracteres')
+            .max(14, 'Login com no máximo 12 caracters'),
         password: z.string()
             .min(6, 'Senha precisa ter no mínimo 6 caracteres'),
         confirmPassword: z.string()
             .min(6, 'Senha precisa ter no mínimo 6 caracteres')
     })
-        .refine((data) => 
+        .refine((data) =>
             (data.password === data.confirmPassword),
             { message: 'Senhas precisam ser iguais', path: ['confirmPassword'] }
         )
@@ -34,9 +44,25 @@ export function Register() {
         resolver: zodResolver(registerSchema)
     })
 
-    function handleSubmitRegister(data: RegisterSchema) {
-        handleSubmitForLogin()
-        console.log(data)
+    function handleSubmitRegister() {
+        const { login, password, confirmPassword } = userDataRegister
+
+        const myRequest = axios({
+            method: 'post',
+            url: 'https://server-barbershop-e4q8.onrender.com/user',
+            data: {
+                login,
+                password,
+                confirmPassword
+            },
+        })
+
+        toast.promise(myRequest, {
+            loading: 'Loading',
+            success: 'Criado com sucesso',
+            error: 'Ocorreu um erro'
+        })
+
     }
     return (
         <div className='space-y-8 h-full mt-16'>
@@ -44,12 +70,21 @@ export function Register() {
                 <img className='size-48' src="barber.png" alt="barbeiro logo" />
             </div>
             <form onSubmit={handleSubmit(handleSubmitRegister)}>
+
                 <div className='px-7 m-auto space-y-10'>
                     <div className='space-y-4'>
                         <div>
                             <label>Login</label>
                             <div className="p-4 flex justify-between items-center bg-white rounded-lg">
-                                <input className="outline-none" type="text" id="login" placeholder="Informe seu login" {...register("login")} />
+                                <input className="outline-none"
+                                    type="text"
+                                    id="login"
+                                    placeholder="Informe seu login"
+                                    {...register("login")}
+                                    onChange={(e) => {
+                                        setUserDataRegister({ ...userDataRegister, login: e.target.value })
+                                    }}
+                                />
                                 <User className="size-5 text-zinc-900" />
                             </div>
                             {errors.login && <span className="text-xs text-red-600">{errors.login.message}</span>}
@@ -58,7 +93,15 @@ export function Register() {
                         <div>
                             <label>Senha</label>
                             <div className="p-4 flex justify-between items-center bg-white rounded-lg">
-                                <input className="outline-none" type={isToggled ? 'text' : 'password'} id="password" placeholder="Informe sua senha" {...register('password')} />
+                                <input className="outline-none w-4/5"
+                                    type={isToggled ? 'text' : 'password'}
+                                    id="password"
+                                    placeholder="Informe sua senha"
+                                    {...register('password')}
+                                    onChange={(e) => {
+                                        setUserDataRegister({ ...userDataRegister, password: e.target.value })
+                                    }}
+                                />
                                 {isToggled ? <EyeOff className="size-5" onClick={toggle} /> : <Eye className="size-5" onClick={toggle} />}
                                 <Lock className="size-5 text-zinc-900" />
                             </div>
@@ -66,7 +109,15 @@ export function Register() {
                         </div>
                         <div>
                             <div className="p-4 flex justify-between items-center bg-white rounded-lg">
-                                <input className="outline-none" type={isToggled ? 'text' : 'password'} id="confirm_password" placeholder="Confirme sua senha" {...register('confirmPassword')} />
+                                <input className="outline-none w-4/5"
+                                    type={isToggled ? 'text' : 'password'}
+                                    id="confirm_password"
+                                    placeholder="Confirme sua senha"
+                                    {...register('confirmPassword')}
+                                    onChange={(e) => {
+                                        setUserDataRegister({ ...userDataRegister, confirmPassword: e.target.value })
+                                    }}
+                                />
                                 {isToggled ? <EyeOff className="size-5" onClick={toggle} /> : <Eye className="size-5" onClick={toggle} />}
                                 <Lock className="size-5 text-zinc-900" />
                             </div>
@@ -74,13 +125,15 @@ export function Register() {
                         </div>
 
                     </div>
-                    <div className='flex gap-4'>
+                    <div className='flex flex-col gap-2'>
                         <Button type="submit">
                             Cadastrar
                         </Button>
+                        <p className="text-right mr-1 text-slate-100 text-sm cursor-pointer" onClick={handleSubmitForLogin}>Fazer login</p>
                     </div>
                 </div>
             </form>
+            <Toaster toastOptions={{duration: 2000}} />
         </div>
     )
 }

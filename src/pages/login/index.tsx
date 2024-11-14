@@ -5,8 +5,32 @@ import { useToggle } from '../../hook/useToogle'
 import { useForm } from "react-hook-form";
 import { z } from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
-export function Login() { 
+interface User {
+    id: string;
+    login: string;
+    password: string;
+    confirmPassword: string;
+}
+
+
+export function Login() {
+
+    const navigate = useNavigate()
+    const [isToggled, toggle] = useToggle(false);
+    const [users, setUsers] = useState<User[]>([])
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'https://server-barbershop-e4q8.onrender.com/user',
+        }).then((response) => {
+            setUsers(response.data)
+        })
+    }, [])  
 
     const loginSchema = z.object({
         login: z.string().refine(login => {
@@ -16,25 +40,32 @@ export function Login() {
             return login.length !== 0
         }, 'Campo obrigatório'),
     })
-
+    
     type LoginSchema = z.infer<typeof loginSchema>
-
-    const { register, handleSubmit, formState: {errors} } = useForm<LoginSchema>({
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema)
     })
 
-    const navigate = useNavigate()
+    function validateUserInput(inputLogin: string, inputPassword: string): boolean {
+        const user =  users.find(user => user.login === inputLogin && user.password === inputPassword);
+
+        if (user) {
+            return true
+        } else {
+            toast.error('Credenciais incorretas')
+            return false
+        }
+    }
 
     function handleSubmitLogin(data: LoginSchema) {
-        navigate('/barber', {state: {formLoginData: data} })
-        console.log(data)
-    }
+        if (validateUserInput(data.login, data.password)) {
+            navigate('/barber', { state: { formLoginData: data } })
+        }
+    }   
 
     function openRegistrationScreen() {
         navigate('/register')
     }
-
-    const [isToggled, toggle] = useToggle(false);   
 
     return (
         <div className=' space-y-8 h-full mt-16'>
@@ -57,7 +88,7 @@ export function Login() {
                         <div>
                             <label>Senha</label>
                             <div className="p-4 flex justify-between items-center bg-white rounded-lg">
-                                <input className="outline-none" type={isToggled ? 'text' : 'password'} id="password" placeholder="Informe sua senha" {...register('password')} />
+                                <input className="outline-none w-4/5" type={isToggled ? 'text' : 'password'} id="password" placeholder="Informe sua senha" {...register('password')} />
                                 {isToggled ? <EyeOff className="size-5" onClick={toggle} /> : <Eye className="size-5" onClick={toggle} />}
                                 <Lock className="size-5 text-zinc-900" />
                             </div>
@@ -76,6 +107,7 @@ export function Login() {
                     </div>
                 </div>
             </form>
+            <Toaster />
         </div>
     )
 }
